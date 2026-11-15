@@ -90,3 +90,39 @@ body,
 #root > div {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* ═══ SITE-WIDE HOVER GLOW (same look as the project cards) ═══ */
+:root { --glow: 15, 118, 110; }
+:is(.dark, [data-theme="dark"]) { --glow: 45, 212, 191; }
+@media (prefers-color-scheme: dark) {
+  :root:not(.dark):not([data-theme="light"]) { --glow: 45, 212, 191; }
+}
+
+/* cards that are not positioned yet need it, so the glow layer can sit inside them */
+.bg-white[class*="rounded-"]:not(.fixed):not(.absolute):not(.sticky) { position: relative; }
+
+.bg-white[class*="rounded-"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(
+    520px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(var(--glow), 0.22),
+    transparent 65%
+  );
+  box-shadow:
+    inset 0 0 0 1.5px rgba(var(--glow), 0.55),
+    inset 0 0 40px rgba(var(--glow), 0.14);
+}
+
+@media (hover: hover) {
+  .bg-white[class*="rounded-"]:hover::after { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-white[class*="rounded-"]::after { transition: none; }
+}

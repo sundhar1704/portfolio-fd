@@ -79,7 +79,7 @@ export default function Navbar() {
     <header className="fixed left-1/2 top-4 z-50 w-max max-w-[calc(100vw-1rem)] -translate-x-1/2">
       <nav
         aria-label="Main"
-        className="flex items-center gap-0.5 rounded-full bg-[#ffffffe6] px-2 py-2 shadow-lg shadow-teal-900/10 ring-1 ring-slate-900/5 backdrop-blur dark:bg-[#0b3b37e6] dark:shadow-black/30 dark:ring-white/10 sm:gap-1.5 sm:px-3"
+        className="flex max-w-full items-center rounded-full bg-[#ffffffe6] px-1.5 py-2 shadow-lg shadow-teal-900/10 ring-1 ring-slate-900/5 backdrop-blur dark:bg-[#0b3b37e6] dark:shadow-black/30 dark:ring-white/10 min-[460px]:gap-0.5 min-[460px]:px-2 sm:gap-1.5 sm:px-3"
       >
         {links.map((l) => {
           const isActive = active === l.id;
@@ -87,7 +87,7 @@ export default function Navbar() {
             <a
               key={l.id}
               href={`#${l.id}`}
-              className={`relative px-2.5 py-2 text-[13px] font-medium transition-colors sm:px-3.5 sm:text-sm ${
+              className={`relative px-1 py-2 text-[11px] font-medium transition-colors min-[360px]:px-1.5 min-[360px]:text-[12px] min-[460px]:px-2.5 min-[460px]:text-[13px] sm:px-3.5 sm:text-sm ${
                 isActive
                   ? "text-teal-800 dark:text-teal-300"
                   : "text-slate-600 hover:text-slate-900 dark:text-teal-100/60 dark:hover:text-teal-100"
@@ -95,7 +95,7 @@ export default function Navbar() {
             >
               {l.label}
               {isActive && (
-                <span className="absolute inset-x-2.5 bottom-0.5 h-0.5 rounded-full bg-teal-700 dark:bg-teal-400 sm:inset-x-3.5" />
+                <span className="absolute inset-x-1 bottom-0.5 h-0.5 rounded-full bg-teal-700 dark:bg-teal-400 min-[360px]:inset-x-1.5 min-[460px]:inset-x-2.5 sm:inset-x-3.5" />
               )}
             </a>
           );
@@ -109,13 +109,13 @@ export default function Navbar() {
           aria-checked={dark}
           aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
           onClick={() => setTheme(dark ? "light" : "dark")}
-          className="relative ml-1 h-7 w-14 shrink-0 rounded-full bg-teal-100 transition-colors dark:bg-[#05211e] sm:ml-2"
+          className="relative ml-0.5 h-7 w-12 shrink-0 rounded-full bg-teal-100 transition-colors dark:bg-[#05211e] min-[460px]:ml-1 min-[460px]:w-14 sm:ml-2"
         >
           <Sun size={14} className="absolute left-2 top-1/2 -translate-y-1/2 text-slate-400" />
           <Moon size={14} className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400" />
           <span
             className={`absolute left-0.5 top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow transition-transform duration-300 ${
-              dark ? "translate-x-7" : "translate-x-0"
+              dark ? "translate-x-5 min-[460px]:translate-x-7" : "translate-x-0"
             }`}
           >
             {dark ? (

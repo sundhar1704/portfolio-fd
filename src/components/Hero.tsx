@@ -2,6 +2,7 @@ import { motion, type Variants } from "framer-motion";
 import { ArrowDown, MessageSquare, Download } from "lucide-react";
 import GithubIcon from "./GithubIcon";
 import { profile } from "../data/content";
+import { trackEvent } from "../lib/api";
 
 interface Props {
   onOpenAssistant: () => void;
@@ -87,6 +88,7 @@ export default function Hero({ onOpenAssistant }: Props) {
             <a
               href={profile.cvUrl}
               download
+              onClick={() => trackEvent("resume_download")}
               className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-medium text-slate-800 shadow-sm ring-1 ring-slate-900/10 hover:bg-slate-50 transition"
             >
               <Download size={18} /> Download CV
